@@ -8,6 +8,7 @@ function Edu({ e, i }) {
   const [open, setOpen] = useState(false);
   return (
     <article className={`edu glass tilt ${i === 0 ? 'main' : ''}`} ref={t} data-reveal style={{ '--d': `${i * 90}ms` }}>
+      <span className="edu-yr" aria-hidden="true">{e.period.slice(-4)}</span>
       <div className="edu-e" aria-hidden="true">{e.emoji}</div>
       <span className="edu-p mono">{e.period}</span>
       <h3 className="edu-d">{e.degree}</h3>
@@ -30,13 +31,12 @@ function Edu({ e, i }) {
 
 export default function Education() {
   return (
-    <section id="education" className="section">
-      <div className="wrap">
+    <section id="education" className="section tex-band">
+      <div className="wrap rel">
+        <div className="gem" aria-hidden="true"><div className="cube3d"><i /><i /><i /><i /><i /><i /></div></div>
         <SectionHead id="education" kicker="Education & awards" title="Academic foundation."
           sub="Computer Science & Engineering at North South University, with perfect GPAs at HSC and SSC." />
-        <div className="edus">
-          {education.map((e, i) => <Edu key={e.degree} e={e} i={i} />)}
-        </div>
+        <div className="edus">{education.map((e, i) => <Edu key={e.degree} e={e} i={i} />)}</div>
         <h3 className="sub-h" data-reveal>🏆 Academic awards</h3>
         <div className="awards">
           {awards.map((a, i) => (

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { profile, publications } from '../data/profile.js';
+import { profile } from '../data/profile.js';
 import { useTilt, useMagnet } from '../hooks/useTilt.js';
 import Icon from './Icon.jsx';
 
@@ -30,7 +30,6 @@ export default function Hero({ ready }) {
   const tilt = useTilt(14);
   const m1 = useMagnet(0.25);
   const m2 = useMagnet(0.25);
-  const published = publications.filter((p) => p.status === 'Published').length;
   return (
     <section id="home" className={`hero ${ready ? 'go' : ''}`}>
       <div className="wrap hero-grid">
@@ -48,19 +47,11 @@ export default function Hero({ ready }) {
               </span>
             ))}
           </h1>
-          <div className="hero-role">
-            <RoleCube />
-          </div>
+          <div className="hero-role"><RoleCube /></div>
           <p className="hero-tag">{profile.tagline}</p>
-          <div className="hero-meta mono">
-            <span>📍 Dhaka, Bangladesh</span>
-            <span>🎓 B.Sc. CSE, North South University</span>
-            <span>🏛️ {published}× IEEE ICCIT</span>
-          </div>
           <div className="hero-cta">
             <a ref={m1} href="#research" className="btn btn-primary">📄 View research</a>
             <a ref={m2} href="#contact" className="btn btn-ghost">✉️ Get in touch</a>
-            <a href={profile.cv} download className="btn btn-link">⬇ Download CV</a>
           </div>
           <div className="hero-social">
             {profile.socials.slice(0, 3).map((s) => (
@@ -74,9 +65,7 @@ export default function Hero({ ready }) {
             <div className="portrait-card">
               <img src={profile.portrait} alt="Portrait of Md Saiyem Raiyan" width="900" height="1306" fetchpriority="high" />
               <div className="portrait-glare" />
-              <div className="portrait-tag mono">
-                <span className="dot" /> SR · AI/ML · {new Date().getFullYear()}
-              </div>
+              <div className="portrait-tag mono"><span className="dot" /> SR · AI/ML · {new Date().getFullYear()}</div>
             </div>
             <div className="orbit" aria-hidden="true">
               {ORBIT.map((o, i) => (

@@ -15,13 +15,11 @@ export default function Contact() {
     if (fd['bot-field']) return;
     setState('sending');
     try {
-      // Netlify Forms: the hidden static form in index.html registers "contact".
       const res = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: encode({ 'form-name': 'contact', ...fd }) });
       if (!res.ok) throw new Error(String(res.status));
       setState('sent');
       e.target.reset();
     } catch {
-      // Not hosted on Netlify (or offline): fall back to the visitor's mail app.
       const body = `${fd.message}\n\n— ${fd.name} (${fd.email})`;
       location.href = `mailto:${profile.email}?subject=${encodeURIComponent(fd.subject || 'Hello from your portfolio')}&body=${encodeURIComponent(body)}`;
       setState('mail');
@@ -33,8 +31,9 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="section">
-      <div className="wrap">
+    <section id="contact" className="section ct">
+      <div className="ct-rings" aria-hidden="true"><span /><span /><span /></div>
+      <div className="wrap rel">
         <SectionHead id="contact" kicker="Contact" title="Let’s build something meaningful."
           sub="Open to research collaborations, ML/AI engineering roles and graduate study opportunities." />
         <div className="contact-grid">
@@ -60,7 +59,6 @@ export default function Contact() {
                 </a>
               ))}
             </div>
-            <a className="btn btn-primary cv-big" href={profile.cv} download data-reveal>📄 Download full CV (PDF)</a>
           </div>
 
           <form className="cform glass" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" onSubmit={submit} data-reveal>

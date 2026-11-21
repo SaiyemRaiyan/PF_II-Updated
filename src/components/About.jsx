@@ -1,7 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
-import { profile, projects } from '../data/profile.js';
+import { profile } from '../data/profile.js';
 import SectionHead from './SectionHead.jsx';
 import { useTilt } from '../hooks/useTilt.js';
+
+const STATS = [
+  { value: 5, suffix: '+', label: 'Publications', emoji: '📄' },
+  { value: 15, suffix: '+', label: 'Projects', emoji: '🚀' },
+  { value: 7, suffix: '+', label: 'Years teaching & mentoring', emoji: '🎓' },
+];
 
 function Counter({ to, suffix }) {
   const [n, setN] = useState(0);
@@ -37,7 +43,6 @@ function Stat({ s, i }) {
 }
 
 export default function About() {
-  const stats = profile.stats.map((s) => (s.label === 'Projects' ? { ...s, value: projects.length } : s));
   return (
     <section id="about" className="section">
       <div className="wrap">
@@ -49,9 +54,7 @@ export default function About() {
             <blockquote className="motto">{profile.motto}</blockquote>
           </div>
           <div className="about-side">
-            <div className="stats">
-              {stats.map((s, i) => <Stat key={s.label} s={s} i={i} />)}
-            </div>
+            <div className="stats">{STATS.map((s, i) => <Stat key={s.label} s={s} i={i} />)}</div>
             <div className="glass mini" data-reveal>
               <h3 className="mini-t">🔬 Research interests</h3>
               <div className="chips">{profile.researchInterests.map((r) => <span className="chip" key={r}>{r}</span>)}</div>
@@ -59,9 +62,7 @@ export default function About() {
             <div className="glass mini" data-reveal>
               <h3 className="mini-t">🗣️ Languages</h3>
               {profile.languages.map((l) => (
-                <div className="lang" key={l.name}>
-                  <span>{l.name}</span><span className="mono lang-lv">{l.level}</span>
-                </div>
+                <div className="lang" key={l.name}><span>{l.name}</span><span className="mono lang-lv">{l.level}</span></div>
               ))}
             </div>
             <div className="glass mini" data-reveal>
