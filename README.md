@@ -1,14 +1,10 @@
 # Md Saiyem Raiyan — Portfolio (v2)
 
-React 18 + Vite + Three.js. One persistent WebGL "latent constellation" behind the page morphs
-sphere → DNA helix → neural network → torus knot as you scroll. Everything else is CSS 3D
-(tilt cards, role cube, orbit chips, draggable skill sphere, 3D mobile menu).
-
 ## Run
 
 ```bash
 npm install
-npm run dev        # http://localhost:5173
+npm run dev        
 npm run build      # outputs dist/
 npm run preview
 ```
@@ -17,8 +13,7 @@ Requires Node 18+.
 
 ## Edit content
 
-All text, links, projects, papers and skills live in **`src/data/profile.js`**. When the CV changes,
-edit that one file. Replace `public/Md_Saiyem_Raiyan_CV.pdf` with the new CV (keep the file name).
+All text, links, projects, papers and skills live in **`src/data/profile.js`**. 
 
 ## Features
 
